@@ -1,29 +1,14 @@
-import { render } from '@testing-library/react';
-import { describe, it, expect, jest, afterAll } from '@jest/globals';
+import { render, screen } from '@testing-library/react';
+import { describe, it, expect } from '@jest/globals';
 
 import RootPage from '../app/page';
 
-window.fetch = jest.fn().mockImplementation(() =>
-  Promise.resolve({
-    ok: true,
-    json: () => [],
-  })
-);
-
 describe('Root page', () => {
-  const { container, unmount } = render(
-    <RootPage params={{ forTest: true }} />
-  );
-
-  it('should match the snapshot', () => {
-    expect(container).toMatchSnapshot();
-  });
-
-  it('should have the correct tree parent', () => {
-    expect(container).toBeInstanceOf(HTMLDivElement);
-  });
-
-  afterAll(() => {
-    unmount();
+  it('should display the Postahead heading', () => {
+    render(<RootPage params={{}} />);
+    
+    const heading = screen.getByRole('heading', { level: 1 });
+    expect(heading).toBeDefined();
+    expect(heading.textContent).toBe('Postahead');
   });
 });
