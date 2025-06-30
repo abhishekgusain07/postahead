@@ -5,8 +5,8 @@ import RootPage from '../app/page';
 
 describe('Root page', () => {
   it('should display the Postahead heading', () => {
-    render(<RootPage params={{}} />);
-    
+    render(<RootPage />);
+
     const heading = screen.getByRole('heading', { level: 1 });
     expect(heading).toBeDefined();
     expect(heading.textContent).toBe('Postahead');
